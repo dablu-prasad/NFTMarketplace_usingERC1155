@@ -54,23 +54,22 @@
      setNfts(items)
     setLoadingState('loaded') 
    }
-//    async function buyNft(nft) {
-//    /* needs the user to sign the transaction, so will use Web3Provider and sign it */
-//     const web3Modal = new Web3Modal()
-//     const connection = await web3Modal.connect()
-//     const provider = new ethers.providers.Web3Provider(connection)
-//     const signer = provider.getSigner()
+   async function buyNft(nft) {
+   /* needs the user to sign the transaction, so will use Web3Provider and sign it */
+    const web3Modal = new Web3Modal()
+    const connection = await web3Modal.connect()
+    const provider = new ethers.providers.Web3Provider(connection)
+    const signer = provider.getSigner()
     
-//     const contract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
+    const contract = new ethers.Contract(nftmarketaddress, NFT_MarketPlace.abi, signer)
 
-//     /* user will be prompted to pay the asking proces to complete the transaction */
-//     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')   
-//     const transaction = await contract.createMarketSale(nftaddress, nft.tokenId, {
-//       value: price
-//     })
-//   //  await transaction.wait()
-//     loadNFTs()
-//   }
+    /* user will be prompted to pay the asking proces to complete the transaction */
+    const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')  
+    console.log(price) 
+    const transaction = await contract.createMarketSale(nft.tokenId, 1)
+   //await transaction.wait()
+    loadNFTs()
+  }
   if (loadingState === 'loaded' && !nfts.length) return (<h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>)
   return (
     <div className="flex justify-center">
@@ -88,8 +87,8 @@
                 </div>
                 <div className="p-4 bg-black">
                   <p className="text-2xl mb-4 font-bold text-white">{nft.price} ETH</p>
-                  {/* <button className="btn btn-primary" onClick={() => buyNft(nft)}>Buy</button> */}
-                  <button className="btn btn-primary">Buy</button>
+                  <button className="btn btn-primary" onClick={() => buyNft(nft)}>Buy</button>
+                  {/* <button className="btn btn-primary">Buy</button> */}
                 </div>
               </div>
             ))

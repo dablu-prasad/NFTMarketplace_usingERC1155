@@ -31,7 +31,9 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
     rinkeby: {
      
       url: "https://rinkeby.infura.io/v3/04132d4001834221a021b8e2eac7766c",
-      accounts: [process.env.React_App_privatekey]
+      accounts: [process.env.React_App_privatekey],
+      gasPrice: 20000000000,
+      gas: 6000000,
   }
   }
 }
