@@ -14,7 +14,9 @@
    }, [])
    async function loadNFTs() {
      /* create a generic provider and query for unsold market items */
-     const provider = new ethers.providers.JsonRpcProvider("https://rinkeby.infura.io/v3/04132d4001834221a021b8e2eac7766c")
+    // const provider = new ethers.providers.JsonRpcProvider("https://ropsten.infura.io/v3/04132d4001834221a021b8e2eac7766c")
+     const provider = new ethers.providers.JsonRpcProvider()
+     
      //await window.ethereum.request({ method: 'eth_requestAccounts' })
      //const provider = new ethers.providers.Web3Provider(window.ethereum);
      //const signer = provider.getSigner();
@@ -66,7 +68,9 @@
     /* user will be prompted to pay the asking proces to complete the transaction */
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')  
     console.log(price) 
-    const transaction = await contract.createMarketSale(nft.tokenId, 1)
+    console.log(nfts)
+    const transaction = await contract.createMarketSale(nft.tokenId, 1,{value:price})
+    console.log(transaction)
    //await transaction.wait()
     loadNFTs()
   }
