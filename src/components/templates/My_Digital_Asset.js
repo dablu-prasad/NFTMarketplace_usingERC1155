@@ -2,7 +2,7 @@ import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Home from './Home'
-import {nftmarketaddress, nftaddress} from './config'
+import {nftmarketaddress} from './config'
 import NFT_MarketPlace from './artifacts/contracts/NFT_MarketPlace.sol/NFT_MarketPlace.json'
 
 function My_Digital_Asset() {
@@ -41,13 +41,14 @@ function My_Digital_Asset() {
 //  if (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-10 px-20 text-3xl">No assets owned</h1>)
   return (
     <div className="flex justify-center">
-    <Home/>
+      
+    {/* <Home/> */}
       <div className="p-4">
-      <div  className="card" style={{width: 18+'rem'}}>
+      <div  className="card" style={{width: '100%',display:'grid',gridTemplateColumns:'auto auto auto' ,margin:'10px  0px 0px 10px'}}>
           {
             nfts.map((nft, i) => (
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <img src={nft.image} className="rounded" />
+              <div key={i} className="border shadow rounded-xl overflow-hidden" >
+                <img src={nft.image}   width="400px" height="250px" />
                 <div className="p-4 bg-black">
                   <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
                 </div>

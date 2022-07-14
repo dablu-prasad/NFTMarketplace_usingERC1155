@@ -1,6 +1,7 @@
 import NFT_MarketPlace from './components/templates/artifacts/contracts/NFT_MarketPlace.sol/NFT_MarketPlace.json'
 import { ethers } from 'ethers';
 import {useState} from 'react';
+import '../src/App.css'
 import Navbar from './components/templates/Navbar'
 import {
   BrowserRouter as Router,
@@ -36,20 +37,20 @@ import Index_Home from './components/templates/Index_Home';
     getAddress();
   
   return (
-    <>
+    <div className='container1'>
     <Router>
-      <div className="App">
       <Navbar account={account}/>
       <Menu/>
+      <div className="container">
         <Routes>
         <Route exact path="/" element={<Index_Home/>}/>
           <Route exact path="/sell_digital_asset" element={<Sell_Digital_Asset/>} />
-          <Route exact path="/my_digital_asset" element={<My_Digital_Asset/>} />
-          <Route exact path="/create_dashboard" element={<Create_DashBoard/>} />
+         <Route exact path="/my_digital_asset" element={<My_Digital_Asset/>} />
+          {/* <Route exact path="/create_dashboard" element={<Create_DashBoard/>} /> */}
         </Routes>
       </div>
     </Router>
-     </>
+     </div>
   );
 }
 

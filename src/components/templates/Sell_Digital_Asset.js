@@ -5,8 +5,11 @@ import { ethers } from "ethers";
 import { nftmarketaddress} from './config.js'
 import Home from "./Home"
 import { create as ipfsHttpClient } from 'ipfs-http-client'
+import My_Digital_Asset from './My_Digital_Asset';
+import Create_DashBoard from './Create_DashBoard';
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
-
+//import My_Digital_Asset from './src/components/templates/My_Digital_Asset';
+//import My_Digital_Asset from './My_Digital_Asset.js';
 //http://localhost:5001/api/v0
 
 
@@ -85,9 +88,10 @@ export default function CreateItem() {
        // console.log("Amount:",amount);
         console.log("4");
 
-    
+      
 }
 return (
+  
   <div>
   <Home/>
 <div className="mb-3">
@@ -112,7 +116,10 @@ return (
 <input type="file" className="my-4" id="i4" onChange={onChange}/>
 { fileUrl && (<img className="rounded mt-4"  width="350" src={fileUrl} />)}
 </div>
-<button onClick={createMarket} className="btn btn-primary" >Sell_Digital_Asset</button>
+<button onClick={createMarket} className="btn btn-primary" >Create_MintToken</button>
+<Create_DashBoard/>
   </div>
+  
+  
 )
 }
