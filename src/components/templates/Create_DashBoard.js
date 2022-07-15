@@ -55,7 +55,7 @@ export default function Create_DashBoard() {
     <div>
     {/* <Home/> */}
       <div className="p-4" >
-        <h2 className="text-2xl py-2">Items Created</h2>
+        <h2 className="text-2xl py-2">List of my NFT Created:</h2>
           <div  className="card" style={{width: '100%',display:'grid',gridTemplateColumns:'auto auto auto' ,margin:'10px  0px 0px 10px'}}>
           {
             nfts.map((nft, i) => (
@@ -73,7 +73,7 @@ export default function Create_DashBoard() {
         {
           Boolean(sold.length) && (
             <div>
-              <h2 className="text-2xl py-2">Items sold</h2>
+              <h2 className="text-2xl py-2">List of my NFT Sold:</h2>
               <div  className="card" style={{width: 18+'rem'}}>
                 {
                   sold.map((nft, i) => (

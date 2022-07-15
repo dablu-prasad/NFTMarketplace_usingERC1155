@@ -16,31 +16,11 @@ import Create_DashBoard from './components/templates/Create_DashBoard';
 import Index_Home from './components/templates/Index_Home';
  function App() {
   
- // const [name,setname]=useState();
-  //const [symbol,setsymbol]=useState();
-  const[account,setaccount]=useState();
-  //const[balance,setbalance]=useState();
- 
-    async function getAddress()
-    {
-      console.log("Hello")
-      const [account]= await window.ethereum.request({ method: 'eth_requestAccounts' })
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const contract = new ethers.Contract(nftmarketaddress, NFT_MarketPlace.abi, signer);
-
-      console.log(contract)
-
-      setaccount(account)
-    }
-    
-    getAddress();
-  
   return (
     <div className='container1'>
     <Router>
-      <Navbar account={account}/>
-      <Menu/>
+      <Navbar/>
+      {/* <Menu/> */}
       <div className="container">
         <Routes>
         <Route exact path="/" element={<Index_Home/>}/>

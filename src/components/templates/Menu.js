@@ -12,15 +12,19 @@ const navigate=useNavigate();
     return(
       <div className='App'>
 <div className="menu" >
+<button type="button" className="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+  Browser
+</button>
 <button type="button" className="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" onClick={navHome}>
-  Home
+  MarketPlace
 </button>
 <button type="button" className="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" onClick={navSellAsset}>
-  Sell Digital Asset
+  MintNFT
 </button>
 <button type="button" className="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" onClick={navMyAsset}>
-  My Digital Asset
+  MyNFT
 </button>
+
 {/* <button type="button" className="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" onClick={navdashboard}>
   Create DashBoard
 </button> */}

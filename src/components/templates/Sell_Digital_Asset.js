@@ -93,7 +93,7 @@ export default function CreateItem() {
 return (
   
   <div>
-  <Home/>
+  {/* <Home/> */}
 <div className="mb-3">
 <label  className="form-label">Name:</label>
 <input className="form-control" id="i1" onChange={e => updateFormInput({ ...formInput, name: e.target.value })} />
@@ -116,7 +116,7 @@ return (
 <input type="file" className="my-4" id="i4" onChange={onChange}/>
 { fileUrl && (<img className="rounded mt-4"  width="350" src={fileUrl} />)}
 </div>
-<button onClick={createMarket} className="btn btn-primary" >Create_MintToken</button>
+<button onClick={createMarket} className="btn btn-primary" >Mint NFT</button>
 <Create_DashBoard/>
   </div>
   
