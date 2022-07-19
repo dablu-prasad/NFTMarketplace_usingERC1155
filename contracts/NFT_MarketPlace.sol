@@ -1,36 +1,33 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.0<0.9.0;
+pragma solidity >0.4.0<=0.9.0;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
  import "hardhat/console.sol";
-// import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-// Token URL 
-// https://gateway.pinata.cloud/ipfs/QmUrGsnXcvQgJDSAFnsomjT9nQWdDPrbscu9x4Y48EEFkm/1.jpg
 
+// https://gateway.pinata.cloud/ipfs/QmUrGsnXcvQgJDSAFnsomjT9nQWdDPrbscu9x4Y48EEFkm/1.jpg
+//25000000000000000
+//20000000000000000
 contract NFT_MarketPlace is ERC1155, Ownable,ReentrancyGuard {
-  
+   address payable public _owner;
     constructor() ERC1155("")
      {
-  
+        _owner = payable(msg.sender);
      }
-//25000000000000000
-   // using Strings for uint256;
+
     using Counters for Counters.Counter;
     string private _baseURI = "";
     mapping(uint256 => string) public _tokenURIs;
     mapping(uint256 => MarketItem) public idToMarketItem;
     mapping(address => uint256) public _balances;
-    uint256 private platformFee = 25;
-    uint256 private deno = 1000;
+
 
     Counters.Counter public _itemIds;
     Counters.Counter public _itemsSold; 
     Counters.Counter public _tokenIds;
-//25000000000000000
 
     uint256 listingprice=0.025 ether;
 
@@ -57,13 +54,18 @@ contract NFT_MarketPlace is ERC1155, Ownable,ReentrancyGuard {
      {
          return listingprice;
       }
+     /* Updates the listing price of the contract */
+    function updateListingPrice(uint _listingPrice) public payable {
+      require(_owner == msg.sender, "Only marketplace owner can update listing price.");
+      listingprice = _listingPrice;
+    }
 
 
     function mintToken(
         string memory tokenURI,
         uint256 amount,
         uint256 price
-    ) public returns (uint256) {
+    ) public payable returns (uint256) {
          _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
         _mint(msg.sender, newItemId, amount, "");
@@ -90,6 +92,7 @@ contract NFT_MarketPlace is ERC1155, Ownable,ReentrancyGuard {
       _itemIds.increment();
          uint256 itemId=_itemIds.current();
         require(price > 0, "Price must be at least 1 wei");
+        require(msg.value == listingprice, "Please provide correct listing price");
         idToMarketItem[itemId] = MarketItem(
            itemId,
             tokenId,
@@ -144,44 +147,16 @@ function createMarketSale( uint256 itemId,uint256 amount) public payable  nonRee
       //  address owner = idToMarketItem[itemId].owner;
         address seller = idToMarketItem[itemId].seller;
         uint256 tokenId = idToMarketItem[itemId].tokenId;
-
-        payable(seller).transfer( price);
-       // _owner.transfer( listingprice);
-     
-      // payable(address(this)).transfer(listingprice);
-     //   _transfer(address(this),listingprice);
+        require(msg.value == price, "Please sumbit the asking price in order to complete the purchase");
 
         idToMarketItem[itemId].owner = payable(msg.sender);
         idToMarketItem[itemId].sold = true;
+        idToMarketItem[itemId].seller=payable(address(0));
         _itemsSold.increment();
-
         _safeTransferFrom(address(this), msg.sender, tokenId, amount, "");
+        payable(_owner).transfer(listingprice);
+        payable(seller).transfer(msg.value);
 
-        // console.log("seller address::",idToMarketItem[itemId].seller);
-        // console.log("owner address::",idToMarketItem[itemId].owner);
-        // console.log("sold address::",idToMarketItem[itemId].sold);
-        // console.log("seller address::",seller);
-        //  console.log("address(this):", address(this));
-
-
-
-             //  idToMarketItem[itemId].seller = payable(address(0));
-     //   setApprovalForAll(address(this), true);  
-    //    payable(seller).transfer(msg.value);
-
-//     uint price = idToMarketItem[itemId].price;
-//     uint tokenId = idToMarketItem[itemId].tokenId;
-//     require(msg.value == price, "Please sumbit the asking price in order to complete the purchase");
-
-//     idToMarketItem[itemId].seller.transfer(msg.value);
-//    _safeTransferFrom(address(this), msg.sender, tokenId, amount, "");
-//     idToMarketItem[itemId].owner = payable(msg.sender);
-//     idToMarketItem[itemId].sold = true;
-//     _itemsSold.increment();
-//     payable(owner).transfer(listingprice);
-        
-       // payable(seller).transfer(listingprice);
-      //   payable(seller).transfer(listingprice);
 }
 
 /* Returns only items that a user has purchased */
@@ -269,19 +244,6 @@ function createMarketSale( uint256 itemId,uint256 amount) public payable  nonRee
         return bytes(tokenURI).length > 0 ? string(abi.encodePacked(_baseURI, tokenURI)) : super.uri(tokenId);
     }
 
-//    function uri(uint256 _tokenid) override public pure returns (string memory) {
-//         return string(string(abi.encodePacked("", _tokenid.toString())));
-//     }
-
-    // function uri(uint256 _tokenid) override public pure returns (string memory) {
-    //     return string(
-    //         abi.encodePacked(
-    //             "https://gateway.pinata.cloud/ipfs/QmW6BQqh6zRtcFtaqUNaxnDEzDtfG24dHaLp7txXoQuMhv/",
-    //             Strings.toString(_tokenid),".json"
-    //         )
-    //     );
-    // }
-
 //To chnage the URL String after the contract is deployed
     function setURI(string memory newuri) public onlyOwner {
         _setURI(newuri);
@@ -307,25 +269,4 @@ function _transfer(address _to,uint256 _amount)public payable returns (bool succ
         return true;
         console.log("transfer true");
 }
-
-// // The following functions are overrides required by Solidity.
-//     function _beforeTokenTransfer(
-//         address operator,
-//         address from,
-//         address to,
-//         uint256[] memory ids,
-//         uint256[] memory amounts,
-//         bytes memory data
-//     ) internal override(ERC1155, ERC1155Supply) {
-//         super._beforeTokenTransfer(operator, from, to, ids, amounts, data);
-//     }
-
-//     function getMarketArrayitem(uint256 _tokenid1) public view returns(MarketItem memory)
-//     {
-//        return idToMarketItem[_tokenid1];
-//     }
-
-   
-    
 }
-

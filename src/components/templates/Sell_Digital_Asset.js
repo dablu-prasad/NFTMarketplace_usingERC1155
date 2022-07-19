@@ -80,10 +80,12 @@ export default function CreateItem() {
         console.log(formInput.price.toString())
        // console.log(formInput.amount)        
         console.log("3");
-      //  amount=1;
+        
         /* next, create the item */
         let contract = new ethers.Contract(nftmarketaddress, NFT_MarketPlace.abi, signer)
-        let transaction = await contract.mintToken(url,1,price.toString(), { gasLimit: 500000}) 
+        let listingPrice = await contract.getListingPrice()
+        listingPrice = listingPrice.toString()
+        let transaction = await contract.mintToken(url,1,price.toString(), { gasLimit: 500000,value:listingPrice}) 
 
        // console.log("Amount:",amount);
         console.log("4");
@@ -117,7 +119,7 @@ return (
 { fileUrl && (<img className="rounded mt-4"  width="350" src={fileUrl} />)}
 </div>
 <button onClick={createMarket} className="btn btn-primary" >Mint NFT</button>
-<Create_DashBoard/>
+{/* <Create_DashBoard/> */}
   </div>
   
   
