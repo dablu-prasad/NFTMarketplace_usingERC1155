@@ -1,0 +1,515 @@
+Compilation warnings/errors on NFT_MarketPlace.sol:
+Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> NFT_MarketPlace.sol
+
+
+[93m
+ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).reason (NFT_MarketPlace.sol#1069) is a local variable never initialized
+ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).response (NFT_MarketPlace.sol#1064) is a local variable never initialized
+ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).reason (NFT_MarketPlace.sol#1046) is a local variable never initialized
+ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).response (NFT_MarketPlace.sol#1042) is a local variable never initialized
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-local-variables[0m
+[93m
+ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (NFT_MarketPlace.sol#1033-1052) ignores return value by IERC1155Receiver(to).onERC1155Received(operator,from,id,amount,data) (NFT_MarketPlace.sol#1042-1050)
+ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (NFT_MarketPlace.sol#1054-1075) ignores return value by IERC1155Receiver(to).onERC1155BatchReceived(operator,from,ids,amounts,data) (NFT_MarketPlace.sol#1063-1073)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return[0m
+[92m
+NFT_MarketPlace.burnNFT(uint256,uint256).owner (NFT_MarketPlace.sol#3165) shadows:
+	- Ownable.owner() (NFT_MarketPlace.sol#2868-2870) (function)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#local-variable-shadowing[0m
+[92m
+NFT_MarketPlace.updateListingPrice(uint256) (NFT_MarketPlace.sol#2974-2977) should emit an event for: 
+	- listingprice = _listingPrice (NFT_MarketPlace.sol#2976) 
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-events-arithmetic[0m
+[92m
+Variable 'ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).response (NFT_MarketPlace.sol#1042)' in ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (NFT_MarketPlace.sol#1033-1052) potentially used before declaration: response != IERC1155Receiver.onERC1155Received.selector (NFT_MarketPlace.sol#1043)
+Variable 'ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).reason (NFT_MarketPlace.sol#1046)' in ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (NFT_MarketPlace.sol#1033-1052) potentially used before declaration: revert(string)(reason) (NFT_MarketPlace.sol#1047)
+Variable 'ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).response (NFT_MarketPlace.sol#1064)' in ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (NFT_MarketPlace.sol#1054-1075) potentially used before declaration: response != IERC1155Receiver.onERC1155BatchReceived.selector (NFT_MarketPlace.sol#1066)
+Variable 'ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).reason (NFT_MarketPlace.sol#1069)' in ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (NFT_MarketPlace.sol#1054-1075) potentially used before declaration: revert(string)(reason) (NFT_MarketPlace.sol#1070)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#pre-declaration-usage-of-local-variables[0m
+[92m
+Address.verifyCallResult(bool,bytes,string) (NFT_MarketPlace.sol#441-461) uses assembly
+	- INLINE ASM (NFT_MarketPlace.sol#453-456)
+console._sendLogPayload(bytes) (NFT_MarketPlace.sol#1169-1176) uses assembly
+	- INLINE ASM (NFT_MarketPlace.sol#1172-1175)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#assembly-usage[0m
+[92m
+NFT_MarketPlace.burnNFT(uint256,uint256) (NFT_MarketPlace.sol#3162-3171) compares to a boolean constant:
+	-require(bool,string)(owner == msg.sender || (owner == address(this) && sold == false),Only owner can burn the Token) (NFT_MarketPlace.sol#3167)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#boolean-equality[0m
+[92m
+Different versions of Solidity are used:
+	- Version used: ['>0.4.0<=0.9.0', '>=0.4.22<0.9.0', '^0.8.0', '^0.8.1']
+	- ^0.8.0 (NFT_MarketPlace.sol#9)
+	- ^0.8.1 (NFT_MarketPlace.sol#244)
+	- >=0.4.22<0.9.0 (NFT_MarketPlace.sol#1164)
+	- >0.4.0<=0.9.0 (NFT_MarketPlace.sol#2916)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#different-pragma-directives-are-used[0m
+[92m
+Address.functionCall(address,bytes) (NFT_MarketPlace.sol#325-327) is never used and should be removed
+Address.functionCall(address,bytes,string) (NFT_MarketPlace.sol#335-341) is never used and should be removed
+Address.functionCallWithValue(address,bytes,uint256) (NFT_MarketPlace.sol#354-360) is never used and should be removed
+Address.functionCallWithValue(address,bytes,uint256,string) (NFT_MarketPlace.sol#368-379) is never used and should be removed
+Address.functionDelegateCall(address,bytes) (NFT_MarketPlace.sol#414-416) is never used and should be removed
+Address.functionDelegateCall(address,bytes,string) (NFT_MarketPlace.sol#424-433) is never used and should be removed
+Address.functionStaticCall(address,bytes) (NFT_MarketPlace.sol#387-389) is never used and should be removed
+Address.functionStaticCall(address,bytes,string) (NFT_MarketPlace.sol#397-406) is never used and should be removed
+Address.sendValue(address,uint256) (NFT_MarketPlace.sol#300-305) is never used and should be removed
+Address.verifyCallResult(bool,bytes,string) (NFT_MarketPlace.sol#441-461) is never used and should be removed
+Context._msgData() (NFT_MarketPlace.sol#229-231) is never used and should be removed
+Counters.decrement(Counters.Counter) (NFT_MarketPlace.sol#2734-2740) is never used and should be removed
+Counters.reset(Counters.Counter) (NFT_MarketPlace.sol#2742-2744) is never used and should be removed
+ERC1155._burn(address,uint256,uint256) (NFT_MarketPlace.sol#899-921) is never used and should be removed
+ERC1155._burnBatch(address,uint256[],uint256[]) (NFT_MarketPlace.sol#932-958) is never used and should be removed
+ERC1155._mint(address,uint256,uint256,bytes) (NFT_MarketPlace.sol#832-852) is never used and should be removed
+console._sendLogPayload(bytes) (NFT_MarketPlace.sol#1169-1176) is never used and should be removed
+console.log() (NFT_MarketPlace.sol#1178-1180) is never used and should be removed
+console.log(address) (NFT_MarketPlace.sol#1346-1348) is never used and should be removed
+console.log(address,address) (NFT_MarketPlace.sol#1410-1412) is never used and should be removed
+console.log(address,address,address) (NFT_MarketPlace.sol#1666-1668) is never used and should be removed
+console.log(address,address,address,address) (NFT_MarketPlace.sol#2690-2692) is never used and should be removed
+console.log(address,address,address,bool) (NFT_MarketPlace.sol#2686-2688) is never used and should be removed
+console.log(address,address,address,string) (NFT_MarketPlace.sol#2682-2684) is never used and should be removed
+console.log(address,address,address,uint256) (NFT_MarketPlace.sol#2678-2680) is never used and should be removed
+console.log(address,address,bool) (NFT_MarketPlace.sol#1662-1664) is never used and should be removed
+console.log(address,address,bool,address) (NFT_MarketPlace.sol#2674-2676) is never used and should be removed
+console.log(address,address,bool,bool) (NFT_MarketPlace.sol#2670-2672) is never used and should be removed
+console.log(address,address,bool,string) (NFT_MarketPlace.sol#2666-2668) is never used and should be removed
+console.log(address,address,bool,uint256) (NFT_MarketPlace.sol#2662-2664) is never used and should be removed
+console.log(address,address,string) (NFT_MarketPlace.sol#1658-1660) is never used and should be removed
+console.log(address,address,string,address) (NFT_MarketPlace.sol#2658-2660) is never used and should be removed
+console.log(address,address,string,bool) (NFT_MarketPlace.sol#2654-2656) is never used and should be removed
+console.log(address,address,string,string) (NFT_MarketPlace.sol#2650-2652) is never used and should be removed
+console.log(address,address,string,uint256) (NFT_MarketPlace.sol#2646-2648) is never used and should be removed
+console.log(address,address,uint256) (NFT_MarketPlace.sol#1654-1656) is never used and should be removed
+console.log(address,address,uint256,address) (NFT_MarketPlace.sol#2642-2644) is never used and should be removed
+console.log(address,address,uint256,bool) (NFT_MarketPlace.sol#2638-2640) is never used and should be removed
+console.log(address,address,uint256,string) (NFT_MarketPlace.sol#2634-2636) is never used and should be removed
+console.log(address,address,uint256,uint256) (NFT_MarketPlace.sol#2630-2632) is never used and should be removed
+console.log(address,bool) (NFT_MarketPlace.sol#1406-1408) is never used and should be removed
+console.log(address,bool,address) (NFT_MarketPlace.sol#1650-1652) is never used and should be removed
+console.log(address,bool,address,address) (NFT_MarketPlace.sol#2626-2628) is never used and should be removed
+console.log(address,bool,address,bool) (NFT_MarketPlace.sol#2622-2624) is never used and should be removed
+console.log(address,bool,address,string) (NFT_MarketPlace.sol#2618-2620) is never used and should be removed
+console.log(address,bool,address,uint256) (NFT_MarketPlace.sol#2614-2616) is never used and should be removed
+console.log(address,bool,bool) (NFT_MarketPlace.sol#1646-1648) is never used and should be removed
+console.log(address,bool,bool,address) (NFT_MarketPlace.sol#2610-2612) is never used and should be removed
+console.log(address,bool,bool,bool) (NFT_MarketPlace.sol#2606-2608) is never used and should be removed
+console.log(address,bool,bool,string) (NFT_MarketPlace.sol#2602-2604) is never used and should be removed
+console.log(address,bool,bool,uint256) (NFT_MarketPlace.sol#2598-2600) is never used and should be removed
+console.log(address,bool,string) (NFT_MarketPlace.sol#1642-1644) is never used and should be removed
+console.log(address,bool,string,address) (NFT_MarketPlace.sol#2594-2596) is never used and should be removed
+console.log(address,bool,string,bool) (NFT_MarketPlace.sol#2590-2592) is never used and should be removed
+console.log(address,bool,string,string) (NFT_MarketPlace.sol#2586-2588) is never used and should be removed
+console.log(address,bool,string,uint256) (NFT_MarketPlace.sol#2582-2584) is never used and should be removed
+console.log(address,bool,uint256) (NFT_MarketPlace.sol#1638-1640) is never used and should be removed
+console.log(address,bool,uint256,address) (NFT_MarketPlace.sol#2578-2580) is never used and should be removed
+console.log(address,bool,uint256,bool) (NFT_MarketPlace.sol#2574-2576) is never used and should be removed
+console.log(address,bool,uint256,string) (NFT_MarketPlace.sol#2570-2572) is never used and should be removed
+console.log(address,bool,uint256,uint256) (NFT_MarketPlace.sol#2566-2568) is never used and should be removed
+console.log(address,string) (NFT_MarketPlace.sol#1402-1404) is never used and should be removed
+console.log(address,string,address) (NFT_MarketPlace.sol#1634-1636) is never used and should be removed
+console.log(address,string,address,address) (NFT_MarketPlace.sol#2562-2564) is never used and should be removed
+console.log(address,string,address,bool) (NFT_MarketPlace.sol#2558-2560) is never used and should be removed
+console.log(address,string,address,string) (NFT_MarketPlace.sol#2554-2556) is never used and should be removed
+console.log(address,string,address,uint256) (NFT_MarketPlace.sol#2550-2552) is never used and should be removed
+console.log(address,string,bool) (NFT_MarketPlace.sol#1630-1632) is never used and should be removed
+console.log(address,string,bool,address) (NFT_MarketPlace.sol#2546-2548) is never used and should be removed
+console.log(address,string,bool,bool) (NFT_MarketPlace.sol#2542-2544) is never used and should be removed
+console.log(address,string,bool,string) (NFT_MarketPlace.sol#2538-2540) is never used and should be removed
+console.log(address,string,bool,uint256) (NFT_MarketPlace.sol#2534-2536) is never used and should be removed
+console.log(address,string,string) (NFT_MarketPlace.sol#1626-1628) is never used and should be removed
+console.log(address,string,string,address) (NFT_MarketPlace.sol#2530-2532) is never used and should be removed
+console.log(address,string,string,bool) (NFT_MarketPlace.sol#2526-2528) is never used and should be removed
+console.log(address,string,string,string) (NFT_MarketPlace.sol#2522-2524) is never used and should be removed
+console.log(address,string,string,uint256) (NFT_MarketPlace.sol#2518-2520) is never used and should be removed
+console.log(address,string,uint256) (NFT_MarketPlace.sol#1622-1624) is never used and should be removed
+console.log(address,string,uint256,address) (NFT_MarketPlace.sol#2514-2516) is never used and should be removed
+console.log(address,string,uint256,bool) (NFT_MarketPlace.sol#2510-2512) is never used and should be removed
+console.log(address,string,uint256,string) (NFT_MarketPlace.sol#2506-2508) is never used and should be removed
+console.log(address,string,uint256,uint256) (NFT_MarketPlace.sol#2502-2504) is never used and should be removed
+console.log(address,uint256) (NFT_MarketPlace.sol#1398-1400) is never used and should be removed
+console.log(address,uint256,address) (NFT_MarketPlace.sol#1618-1620) is never used and should be removed
+console.log(address,uint256,address,address) (NFT_MarketPlace.sol#2498-2500) is never used and should be removed
+console.log(address,uint256,address,bool) (NFT_MarketPlace.sol#2494-2496) is never used and should be removed
+console.log(address,uint256,address,string) (NFT_MarketPlace.sol#2490-2492) is never used and should be removed
+console.log(address,uint256,address,uint256) (NFT_MarketPlace.sol#2486-2488) is never used and should be removed
+console.log(address,uint256,bool) (NFT_MarketPlace.sol#1614-1616) is never used and should be removed
+console.log(address,uint256,bool,address) (NFT_MarketPlace.sol#2482-2484) is never used and should be removed
+console.log(address,uint256,bool,bool) (NFT_MarketPlace.sol#2478-2480) is never used and should be removed
+console.log(address,uint256,bool,string) (NFT_MarketPlace.sol#2474-2476) is never used and should be removed
+console.log(address,uint256,bool,uint256) (NFT_MarketPlace.sol#2470-2472) is never used and should be removed
+console.log(address,uint256,string) (NFT_MarketPlace.sol#1610-1612) is never used and should be removed
+console.log(address,uint256,string,address) (NFT_MarketPlace.sol#2466-2468) is never used and should be removed
+console.log(address,uint256,string,bool) (NFT_MarketPlace.sol#2462-2464) is never used and should be removed
+console.log(address,uint256,string,string) (NFT_MarketPlace.sol#2458-2460) is never used and should be removed
+console.log(address,uint256,string,uint256) (NFT_MarketPlace.sol#2454-2456) is never used and should be removed
+console.log(address,uint256,uint256) (NFT_MarketPlace.sol#1606-1608) is never used and should be removed
+console.log(address,uint256,uint256,address) (NFT_MarketPlace.sol#2450-2452) is never used and should be removed
+console.log(address,uint256,uint256,bool) (NFT_MarketPlace.sol#2446-2448) is never used and should be removed
+console.log(address,uint256,uint256,string) (NFT_MarketPlace.sol#2442-2444) is never used and should be removed
+console.log(address,uint256,uint256,uint256) (NFT_MarketPlace.sol#2438-2440) is never used and should be removed
+console.log(bool) (NFT_MarketPlace.sol#1342-1344) is never used and should be removed
+console.log(bool,address) (NFT_MarketPlace.sol#1394-1396) is never used and should be removed
+console.log(bool,address,address) (NFT_MarketPlace.sol#1602-1604) is never used and should be removed
+console.log(bool,address,address,address) (NFT_MarketPlace.sol#2434-2436) is never used and should be removed
+console.log(bool,address,address,bool) (NFT_MarketPlace.sol#2430-2432) is never used and should be removed
+console.log(bool,address,address,string) (NFT_MarketPlace.sol#2426-2428) is never used and should be removed
+console.log(bool,address,address,uint256) (NFT_MarketPlace.sol#2422-2424) is never used and should be removed
+console.log(bool,address,bool) (NFT_MarketPlace.sol#1598-1600) is never used and should be removed
+console.log(bool,address,bool,address) (NFT_MarketPlace.sol#2418-2420) is never used and should be removed
+console.log(bool,address,bool,bool) (NFT_MarketPlace.sol#2414-2416) is never used and should be removed
+console.log(bool,address,bool,string) (NFT_MarketPlace.sol#2410-2412) is never used and should be removed
+console.log(bool,address,bool,uint256) (NFT_MarketPlace.sol#2406-2408) is never used and should be removed
+console.log(bool,address,string) (NFT_MarketPlace.sol#1594-1596) is never used and should be removed
+console.log(bool,address,string,address) (NFT_MarketPlace.sol#2402-2404) is never used and should be removed
+console.log(bool,address,string,bool) (NFT_MarketPlace.sol#2398-2400) is never used and should be removed
+console.log(bool,address,string,string) (NFT_MarketPlace.sol#2394-2396) is never used and should be removed
+console.log(bool,address,string,uint256) (NFT_MarketPlace.sol#2390-2392) is never used and should be removed
+console.log(bool,address,uint256) (NFT_MarketPlace.sol#1590-1592) is never used and should be removed
+console.log(bool,address,uint256,address) (NFT_MarketPlace.sol#2386-2388) is never used and should be removed
+console.log(bool,address,uint256,bool) (NFT_MarketPlace.sol#2382-2384) is never used and should be removed
+console.log(bool,address,uint256,string) (NFT_MarketPlace.sol#2378-2380) is never used and should be removed
+console.log(bool,address,uint256,uint256) (NFT_MarketPlace.sol#2374-2376) is never used and should be removed
+console.log(bool,bool) (NFT_MarketPlace.sol#1390-1392) is never used and should be removed
+console.log(bool,bool,address) (NFT_MarketPlace.sol#1586-1588) is never used and should be removed
+console.log(bool,bool,address,address) (NFT_MarketPlace.sol#2370-2372) is never used and should be removed
+console.log(bool,bool,address,bool) (NFT_MarketPlace.sol#2366-2368) is never used and should be removed
+console.log(bool,bool,address,string) (NFT_MarketPlace.sol#2362-2364) is never used and should be removed
+console.log(bool,bool,address,uint256) (NFT_MarketPlace.sol#2358-2360) is never used and should be removed
+console.log(bool,bool,bool) (NFT_MarketPlace.sol#1582-1584) is never used and should be removed
+console.log(bool,bool,bool,address) (NFT_MarketPlace.sol#2354-2356) is never used and should be removed
+console.log(bool,bool,bool,bool) (NFT_MarketPlace.sol#2350-2352) is never used and should be removed
+console.log(bool,bool,bool,string) (NFT_MarketPlace.sol#2346-2348) is never used and should be removed
+console.log(bool,bool,bool,uint256) (NFT_MarketPlace.sol#2342-2344) is never used and should be removed
+console.log(bool,bool,string) (NFT_MarketPlace.sol#1578-1580) is never used and should be removed
+console.log(bool,bool,string,address) (NFT_MarketPlace.sol#2338-2340) is never used and should be removed
+console.log(bool,bool,string,bool) (NFT_MarketPlace.sol#2334-2336) is never used and should be removed
+console.log(bool,bool,string,string) (NFT_MarketPlace.sol#2330-2332) is never used and should be removed
+console.log(bool,bool,string,uint256) (NFT_MarketPlace.sol#2326-2328) is never used and should be removed
+console.log(bool,bool,uint256) (NFT_MarketPlace.sol#1574-1576) is never used and should be removed
+console.log(bool,bool,uint256,address) (NFT_MarketPlace.sol#2322-2324) is never used and should be removed
+console.log(bool,bool,uint256,bool) (NFT_MarketPlace.sol#2318-2320) is never used and should be removed
+console.log(bool,bool,uint256,string) (NFT_MarketPlace.sol#2314-2316) is never used and should be removed
+console.log(bool,bool,uint256,uint256) (NFT_MarketPlace.sol#2310-2312) is never used and should be removed
+console.log(bool,string) (NFT_MarketPlace.sol#1386-1388) is never used and should be removed
+console.log(bool,string,address) (NFT_MarketPlace.sol#1570-1572) is never used and should be removed
+console.log(bool,string,address,address) (NFT_MarketPlace.sol#2306-2308) is never used and should be removed
+console.log(bool,string,address,bool) (NFT_MarketPlace.sol#2302-2304) is never used and should be removed
+console.log(bool,string,address,string) (NFT_MarketPlace.sol#2298-2300) is never used and should be removed
+console.log(bool,string,address,uint256) (NFT_MarketPlace.sol#2294-2296) is never used and should be removed
+console.log(bool,string,bool) (NFT_MarketPlace.sol#1566-1568) is never used and should be removed
+console.log(bool,string,bool,address) (NFT_MarketPlace.sol#2290-2292) is never used and should be removed
+console.log(bool,string,bool,bool) (NFT_MarketPlace.sol#2286-2288) is never used and should be removed
+console.log(bool,string,bool,string) (NFT_MarketPlace.sol#2282-2284) is never used and should be removed
+console.log(bool,string,bool,uint256) (NFT_MarketPlace.sol#2278-2280) is never used and should be removed
+console.log(bool,string,string) (NFT_MarketPlace.sol#1562-1564) is never used and should be removed
+console.log(bool,string,string,address) (NFT_MarketPlace.sol#2274-2276) is never used and should be removed
+console.log(bool,string,string,bool) (NFT_MarketPlace.sol#2270-2272) is never used and should be removed
+console.log(bool,string,string,string) (NFT_MarketPlace.sol#2266-2268) is never used and should be removed
+console.log(bool,string,string,uint256) (NFT_MarketPlace.sol#2262-2264) is never used and should be removed
+console.log(bool,string,uint256) (NFT_MarketPlace.sol#1558-1560) is never used and should be removed
+console.log(bool,string,uint256,address) (NFT_MarketPlace.sol#2258-2260) is never used and should be removed
+console.log(bool,string,uint256,bool) (NFT_MarketPlace.sol#2254-2256) is never used and should be removed
+console.log(bool,string,uint256,string) (NFT_MarketPlace.sol#2250-2252) is never used and should be removed
+console.log(bool,string,uint256,uint256) (NFT_MarketPlace.sol#2246-2248) is never used and should be removed
+console.log(bool,uint256) (NFT_MarketPlace.sol#1382-1384) is never used and should be removed
+console.log(bool,uint256,address) (NFT_MarketPlace.sol#1554-1556) is never used and should be removed
+console.log(bool,uint256,address,address) (NFT_MarketPlace.sol#2242-2244) is never used and should be removed
+console.log(bool,uint256,address,bool) (NFT_MarketPlace.sol#2238-2240) is never used and should be removed
+console.log(bool,uint256,address,string) (NFT_MarketPlace.sol#2234-2236) is never used and should be removed
+console.log(bool,uint256,address,uint256) (NFT_MarketPlace.sol#2230-2232) is never used and should be removed
+console.log(bool,uint256,bool) (NFT_MarketPlace.sol#1550-1552) is never used and should be removed
+console.log(bool,uint256,bool,address) (NFT_MarketPlace.sol#2226-2228) is never used and should be removed
+console.log(bool,uint256,bool,bool) (NFT_MarketPlace.sol#2222-2224) is never used and should be removed
+console.log(bool,uint256,bool,string) (NFT_MarketPlace.sol#2218-2220) is never used and should be removed
+console.log(bool,uint256,bool,uint256) (NFT_MarketPlace.sol#2214-2216) is never used and should be removed
+console.log(bool,uint256,string) (NFT_MarketPlace.sol#1546-1548) is never used and should be removed
+console.log(bool,uint256,string,address) (NFT_MarketPlace.sol#2210-2212) is never used and should be removed
+console.log(bool,uint256,string,bool) (NFT_MarketPlace.sol#2206-2208) is never used and should be removed
+console.log(bool,uint256,string,string) (NFT_MarketPlace.sol#2202-2204) is never used and should be removed
+console.log(bool,uint256,string,uint256) (NFT_MarketPlace.sol#2198-2200) is never used and should be removed
+console.log(bool,uint256,uint256) (NFT_MarketPlace.sol#1542-1544) is never used and should be removed
+console.log(bool,uint256,uint256,address) (NFT_MarketPlace.sol#2194-2196) is never used and should be removed
+console.log(bool,uint256,uint256,bool) (NFT_MarketPlace.sol#2190-2192) is never used and should be removed
+console.log(bool,uint256,uint256,string) (NFT_MarketPlace.sol#2186-2188) is never used and should be removed
+console.log(bool,uint256,uint256,uint256) (NFT_MarketPlace.sol#2182-2184) is never used and should be removed
+console.log(string) (NFT_MarketPlace.sol#1338-1340) is never used and should be removed
+console.log(string,address) (NFT_MarketPlace.sol#1378-1380) is never used and should be removed
+console.log(string,address,address) (NFT_MarketPlace.sol#1538-1540) is never used and should be removed
+console.log(string,address,address,address) (NFT_MarketPlace.sol#2178-2180) is never used and should be removed
+console.log(string,address,address,bool) (NFT_MarketPlace.sol#2174-2176) is never used and should be removed
+console.log(string,address,address,string) (NFT_MarketPlace.sol#2170-2172) is never used and should be removed
+console.log(string,address,address,uint256) (NFT_MarketPlace.sol#2166-2168) is never used and should be removed
+console.log(string,address,bool) (NFT_MarketPlace.sol#1534-1536) is never used and should be removed
+console.log(string,address,bool,address) (NFT_MarketPlace.sol#2162-2164) is never used and should be removed
+console.log(string,address,bool,bool) (NFT_MarketPlace.sol#2158-2160) is never used and should be removed
+console.log(string,address,bool,string) (NFT_MarketPlace.sol#2154-2156) is never used and should be removed
+console.log(string,address,bool,uint256) (NFT_MarketPlace.sol#2150-2152) is never used and should be removed
+console.log(string,address,string) (NFT_MarketPlace.sol#1530-1532) is never used and should be removed
+console.log(string,address,string,address) (NFT_MarketPlace.sol#2146-2148) is never used and should be removed
+console.log(string,address,string,bool) (NFT_MarketPlace.sol#2142-2144) is never used and should be removed
+console.log(string,address,string,string) (NFT_MarketPlace.sol#2138-2140) is never used and should be removed
+console.log(string,address,string,uint256) (NFT_MarketPlace.sol#2134-2136) is never used and should be removed
+console.log(string,address,uint256) (NFT_MarketPlace.sol#1526-1528) is never used and should be removed
+console.log(string,address,uint256,address) (NFT_MarketPlace.sol#2130-2132) is never used and should be removed
+console.log(string,address,uint256,bool) (NFT_MarketPlace.sol#2126-2128) is never used and should be removed
+console.log(string,address,uint256,string) (NFT_MarketPlace.sol#2122-2124) is never used and should be removed
+console.log(string,address,uint256,uint256) (NFT_MarketPlace.sol#2118-2120) is never used and should be removed
+console.log(string,bool) (NFT_MarketPlace.sol#1374-1376) is never used and should be removed
+console.log(string,bool,address) (NFT_MarketPlace.sol#1522-1524) is never used and should be removed
+console.log(string,bool,address,address) (NFT_MarketPlace.sol#2114-2116) is never used and should be removed
+console.log(string,bool,address,bool) (NFT_MarketPlace.sol#2110-2112) is never used and should be removed
+console.log(string,bool,address,string) (NFT_MarketPlace.sol#2106-2108) is never used and should be removed
+console.log(string,bool,address,uint256) (NFT_MarketPlace.sol#2102-2104) is never used and should be removed
+console.log(string,bool,bool) (NFT_MarketPlace.sol#1518-1520) is never used and should be removed
+console.log(string,bool,bool,address) (NFT_MarketPlace.sol#2098-2100) is never used and should be removed
+console.log(string,bool,bool,bool) (NFT_MarketPlace.sol#2094-2096) is never used and should be removed
+console.log(string,bool,bool,string) (NFT_MarketPlace.sol#2090-2092) is never used and should be removed
+console.log(string,bool,bool,uint256) (NFT_MarketPlace.sol#2086-2088) is never used and should be removed
+console.log(string,bool,string) (NFT_MarketPlace.sol#1514-1516) is never used and should be removed
+console.log(string,bool,string,address) (NFT_MarketPlace.sol#2082-2084) is never used and should be removed
+console.log(string,bool,string,bool) (NFT_MarketPlace.sol#2078-2080) is never used and should be removed
+console.log(string,bool,string,string) (NFT_MarketPlace.sol#2074-2076) is never used and should be removed
+console.log(string,bool,string,uint256) (NFT_MarketPlace.sol#2070-2072) is never used and should be removed
+console.log(string,bool,uint256) (NFT_MarketPlace.sol#1510-1512) is never used and should be removed
+console.log(string,bool,uint256,address) (NFT_MarketPlace.sol#2066-2068) is never used and should be removed
+console.log(string,bool,uint256,bool) (NFT_MarketPlace.sol#2062-2064) is never used and should be removed
+console.log(string,bool,uint256,string) (NFT_MarketPlace.sol#2058-2060) is never used and should be removed
+console.log(string,bool,uint256,uint256) (NFT_MarketPlace.sol#2054-2056) is never used and should be removed
+console.log(string,string) (NFT_MarketPlace.sol#1370-1372) is never used and should be removed
+console.log(string,string,address) (NFT_MarketPlace.sol#1506-1508) is never used and should be removed
+console.log(string,string,address,address) (NFT_MarketPlace.sol#2050-2052) is never used and should be removed
+console.log(string,string,address,bool) (NFT_MarketPlace.sol#2046-2048) is never used and should be removed
+console.log(string,string,address,string) (NFT_MarketPlace.sol#2042-2044) is never used and should be removed
+console.log(string,string,address,uint256) (NFT_MarketPlace.sol#2038-2040) is never used and should be removed
+console.log(string,string,bool) (NFT_MarketPlace.sol#1502-1504) is never used and should be removed
+console.log(string,string,bool,address) (NFT_MarketPlace.sol#2034-2036) is never used and should be removed
+console.log(string,string,bool,bool) (NFT_MarketPlace.sol#2030-2032) is never used and should be removed
+console.log(string,string,bool,string) (NFT_MarketPlace.sol#2026-2028) is never used and should be removed
+console.log(string,string,bool,uint256) (NFT_MarketPlace.sol#2022-2024) is never used and should be removed
+console.log(string,string,string) (NFT_MarketPlace.sol#1498-1500) is never used and should be removed
+console.log(string,string,string,address) (NFT_MarketPlace.sol#2018-2020) is never used and should be removed
+console.log(string,string,string,bool) (NFT_MarketPlace.sol#2014-2016) is never used and should be removed
+console.log(string,string,string,string) (NFT_MarketPlace.sol#2010-2012) is never used and should be removed
+console.log(string,string,string,uint256) (NFT_MarketPlace.sol#2006-2008) is never used and should be removed
+console.log(string,string,uint256) (NFT_MarketPlace.sol#1494-1496) is never used and should be removed
+console.log(string,string,uint256,address) (NFT_MarketPlace.sol#2002-2004) is never used and should be removed
+console.log(string,string,uint256,bool) (NFT_MarketPlace.sol#1998-2000) is never used and should be removed
+console.log(string,string,uint256,string) (NFT_MarketPlace.sol#1994-1996) is never used and should be removed
+console.log(string,string,uint256,uint256) (NFT_MarketPlace.sol#1990-1992) is never used and should be removed
+console.log(string,uint256) (NFT_MarketPlace.sol#1366-1368) is never used and should be removed
+console.log(string,uint256,address) (NFT_MarketPlace.sol#1490-1492) is never used and should be removed
+console.log(string,uint256,address,address) (NFT_MarketPlace.sol#1986-1988) is never used and should be removed
+console.log(string,uint256,address,bool) (NFT_MarketPlace.sol#1982-1984) is never used and should be removed
+console.log(string,uint256,address,string) (NFT_MarketPlace.sol#1978-1980) is never used and should be removed
+console.log(string,uint256,address,uint256) (NFT_MarketPlace.sol#1974-1976) is never used and should be removed
+console.log(string,uint256,bool) (NFT_MarketPlace.sol#1486-1488) is never used and should be removed
+console.log(string,uint256,bool,address) (NFT_MarketPlace.sol#1970-1972) is never used and should be removed
+console.log(string,uint256,bool,bool) (NFT_MarketPlace.sol#1966-1968) is never used and should be removed
+console.log(string,uint256,bool,string) (NFT_MarketPlace.sol#1962-1964) is never used and should be removed
+console.log(string,uint256,bool,uint256) (NFT_MarketPlace.sol#1958-1960) is never used and should be removed
+console.log(string,uint256,string) (NFT_MarketPlace.sol#1482-1484) is never used and should be removed
+console.log(string,uint256,string,address) (NFT_MarketPlace.sol#1954-1956) is never used and should be removed
+console.log(string,uint256,string,bool) (NFT_MarketPlace.sol#1950-1952) is never used and should be removed
+console.log(string,uint256,string,string) (NFT_MarketPlace.sol#1946-1948) is never used and should be removed
+console.log(string,uint256,string,uint256) (NFT_MarketPlace.sol#1942-1944) is never used and should be removed
+console.log(string,uint256,uint256) (NFT_MarketPlace.sol#1478-1480) is never used and should be removed
+console.log(string,uint256,uint256,address) (NFT_MarketPlace.sol#1938-1940) is never used and should be removed
+console.log(string,uint256,uint256,bool) (NFT_MarketPlace.sol#1934-1936) is never used and should be removed
+console.log(string,uint256,uint256,string) (NFT_MarketPlace.sol#1930-1932) is never used and should be removed
+console.log(string,uint256,uint256,uint256) (NFT_MarketPlace.sol#1926-1928) is never used and should be removed
+console.log(uint256) (NFT_MarketPlace.sol#1334-1336) is never used and should be removed
+console.log(uint256,address) (NFT_MarketPlace.sol#1362-1364) is never used and should be removed
+console.log(uint256,address,address) (NFT_MarketPlace.sol#1474-1476) is never used and should be removed
+console.log(uint256,address,address,address) (NFT_MarketPlace.sol#1922-1924) is never used and should be removed
+console.log(uint256,address,address,bool) (NFT_MarketPlace.sol#1918-1920) is never used and should be removed
+console.log(uint256,address,address,string) (NFT_MarketPlace.sol#1914-1916) is never used and should be removed
+console.log(uint256,address,address,uint256) (NFT_MarketPlace.sol#1910-1912) is never used and should be removed
+console.log(uint256,address,bool) (NFT_MarketPlace.sol#1470-1472) is never used and should be removed
+console.log(uint256,address,bool,address) (NFT_MarketPlace.sol#1906-1908) is never used and should be removed
+console.log(uint256,address,bool,bool) (NFT_MarketPlace.sol#1902-1904) is never used and should be removed
+console.log(uint256,address,bool,string) (NFT_MarketPlace.sol#1898-1900) is never used and should be removed
+console.log(uint256,address,bool,uint256) (NFT_MarketPlace.sol#1894-1896) is never used and should be removed
+console.log(uint256,address,string) (NFT_MarketPlace.sol#1466-1468) is never used and should be removed
+console.log(uint256,address,string,address) (NFT_MarketPlace.sol#1890-1892) is never used and should be removed
+console.log(uint256,address,string,bool) (NFT_MarketPlace.sol#1886-1888) is never used and should be removed
+console.log(uint256,address,string,string) (NFT_MarketPlace.sol#1882-1884) is never used and should be removed
+console.log(uint256,address,string,uint256) (NFT_MarketPlace.sol#1878-1880) is never used and should be removed
+console.log(uint256,address,uint256) (NFT_MarketPlace.sol#1462-1464) is never used and should be removed
+console.log(uint256,address,uint256,address) (NFT_MarketPlace.sol#1874-1876) is never used and should be removed
+console.log(uint256,address,uint256,bool) (NFT_MarketPlace.sol#1870-1872) is never used and should be removed
+console.log(uint256,address,uint256,string) (NFT_MarketPlace.sol#1866-1868) is never used and should be removed
+console.log(uint256,address,uint256,uint256) (NFT_MarketPlace.sol#1862-1864) is never used and should be removed
+console.log(uint256,bool) (NFT_MarketPlace.sol#1358-1360) is never used and should be removed
+console.log(uint256,bool,address) (NFT_MarketPlace.sol#1458-1460) is never used and should be removed
+console.log(uint256,bool,address,address) (NFT_MarketPlace.sol#1858-1860) is never used and should be removed
+console.log(uint256,bool,address,bool) (NFT_MarketPlace.sol#1854-1856) is never used and should be removed
+console.log(uint256,bool,address,string) (NFT_MarketPlace.sol#1850-1852) is never used and should be removed
+console.log(uint256,bool,address,uint256) (NFT_MarketPlace.sol#1846-1848) is never used and should be removed
+console.log(uint256,bool,bool) (NFT_MarketPlace.sol#1454-1456) is never used and should be removed
+console.log(uint256,bool,bool,address) (NFT_MarketPlace.sol#1842-1844) is never used and should be removed
+console.log(uint256,bool,bool,bool) (NFT_MarketPlace.sol#1838-1840) is never used and should be removed
+console.log(uint256,bool,bool,string) (NFT_MarketPlace.sol#1834-1836) is never used and should be removed
+console.log(uint256,bool,bool,uint256) (NFT_MarketPlace.sol#1830-1832) is never used and should be removed
+console.log(uint256,bool,string) (NFT_MarketPlace.sol#1450-1452) is never used and should be removed
+console.log(uint256,bool,string,address) (NFT_MarketPlace.sol#1826-1828) is never used and should be removed
+console.log(uint256,bool,string,bool) (NFT_MarketPlace.sol#1822-1824) is never used and should be removed
+console.log(uint256,bool,string,string) (NFT_MarketPlace.sol#1818-1820) is never used and should be removed
+console.log(uint256,bool,string,uint256) (NFT_MarketPlace.sol#1814-1816) is never used and should be removed
+console.log(uint256,bool,uint256) (NFT_MarketPlace.sol#1446-1448) is never used and should be removed
+console.log(uint256,bool,uint256,address) (NFT_MarketPlace.sol#1810-1812) is never used and should be removed
+console.log(uint256,bool,uint256,bool) (NFT_MarketPlace.sol#1806-1808) is never used and should be removed
+console.log(uint256,bool,uint256,string) (NFT_MarketPlace.sol#1802-1804) is never used and should be removed
+console.log(uint256,bool,uint256,uint256) (NFT_MarketPlace.sol#1798-1800) is never used and should be removed
+console.log(uint256,string) (NFT_MarketPlace.sol#1354-1356) is never used and should be removed
+console.log(uint256,string,address) (NFT_MarketPlace.sol#1442-1444) is never used and should be removed
+console.log(uint256,string,address,address) (NFT_MarketPlace.sol#1794-1796) is never used and should be removed
+console.log(uint256,string,address,bool) (NFT_MarketPlace.sol#1790-1792) is never used and should be removed
+console.log(uint256,string,address,string) (NFT_MarketPlace.sol#1786-1788) is never used and should be removed
+console.log(uint256,string,address,uint256) (NFT_MarketPlace.sol#1782-1784) is never used and should be removed
+console.log(uint256,string,bool) (NFT_MarketPlace.sol#1438-1440) is never used and should be removed
+console.log(uint256,string,bool,address) (NFT_MarketPlace.sol#1778-1780) is never used and should be removed
+console.log(uint256,string,bool,bool) (NFT_MarketPlace.sol#1774-1776) is never used and should be removed
+console.log(uint256,string,bool,string) (NFT_MarketPlace.sol#1770-1772) is never used and should be removed
+console.log(uint256,string,bool,uint256) (NFT_MarketPlace.sol#1766-1768) is never used and should be removed
+console.log(uint256,string,string) (NFT_MarketPlace.sol#1434-1436) is never used and should be removed
+console.log(uint256,string,string,address) (NFT_MarketPlace.sol#1762-1764) is never used and should be removed
+console.log(uint256,string,string,bool) (NFT_MarketPlace.sol#1758-1760) is never used and should be removed
+console.log(uint256,string,string,string) (NFT_MarketPlace.sol#1754-1756) is never used and should be removed
+console.log(uint256,string,string,uint256) (NFT_MarketPlace.sol#1750-1752) is never used and should be removed
+console.log(uint256,string,uint256) (NFT_MarketPlace.sol#1430-1432) is never used and should be removed
+console.log(uint256,string,uint256,address) (NFT_MarketPlace.sol#1746-1748) is never used and should be removed
+console.log(uint256,string,uint256,bool) (NFT_MarketPlace.sol#1742-1744) is never used and should be removed
+console.log(uint256,string,uint256,string) (NFT_MarketPlace.sol#1738-1740) is never used and should be removed
+console.log(uint256,string,uint256,uint256) (NFT_MarketPlace.sol#1734-1736) is never used and should be removed
+console.log(uint256,uint256) (NFT_MarketPlace.sol#1350-1352) is never used and should be removed
+console.log(uint256,uint256,address) (NFT_MarketPlace.sol#1426-1428) is never used and should be removed
+console.log(uint256,uint256,address,address) (NFT_MarketPlace.sol#1730-1732) is never used and should be removed
+console.log(uint256,uint256,address,bool) (NFT_MarketPlace.sol#1726-1728) is never used and should be removed
+console.log(uint256,uint256,address,string) (NFT_MarketPlace.sol#1722-1724) is never used and should be removed
+console.log(uint256,uint256,address,uint256) (NFT_MarketPlace.sol#1718-1720) is never used and should be removed
+console.log(uint256,uint256,bool) (NFT_MarketPlace.sol#1422-1424) is never used and should be removed
+console.log(uint256,uint256,bool,address) (NFT_MarketPlace.sol#1714-1716) is never used and should be removed
+console.log(uint256,uint256,bool,bool) (NFT_MarketPlace.sol#1710-1712) is never used and should be removed
+console.log(uint256,uint256,bool,string) (NFT_MarketPlace.sol#1706-1708) is never used and should be removed
+console.log(uint256,uint256,bool,uint256) (NFT_MarketPlace.sol#1702-1704) is never used and should be removed
+console.log(uint256,uint256,string) (NFT_MarketPlace.sol#1418-1420) is never used and should be removed
+console.log(uint256,uint256,string,address) (NFT_MarketPlace.sol#1698-1700) is never used and should be removed
+console.log(uint256,uint256,string,bool) (NFT_MarketPlace.sol#1694-1696) is never used and should be removed
+console.log(uint256,uint256,string,string) (NFT_MarketPlace.sol#1690-1692) is never used and should be removed
+console.log(uint256,uint256,string,uint256) (NFT_MarketPlace.sol#1686-1688) is never used and should be removed
+console.log(uint256,uint256,uint256) (NFT_MarketPlace.sol#1414-1416) is never used and should be removed
+console.log(uint256,uint256,uint256,address) (NFT_MarketPlace.sol#1682-1684) is never used and should be removed
+console.log(uint256,uint256,uint256,bool) (NFT_MarketPlace.sol#1678-1680) is never used and should be removed
+console.log(uint256,uint256,uint256,string) (NFT_MarketPlace.sol#1674-1676) is never used and should be removed
+console.log(uint256,uint256,uint256,uint256) (NFT_MarketPlace.sol#1670-1672) is never used and should be removed
+console.logAddress(address) (NFT_MarketPlace.sol#1198-1200) is never used and should be removed
+console.logBool(bool) (NFT_MarketPlace.sol#1194-1196) is never used and should be removed
+console.logBytes(bytes) (NFT_MarketPlace.sol#1202-1204) is never used and should be removed
+console.logBytes1(bytes1) (NFT_MarketPlace.sol#1206-1208) is never used and should be removed
+console.logBytes10(bytes10) (NFT_MarketPlace.sol#1242-1244) is never used and should be removed
+console.logBytes11(bytes11) (NFT_MarketPlace.sol#1246-1248) is never used and should be removed
+console.logBytes12(bytes12) (NFT_MarketPlace.sol#1250-1252) is never used and should be removed
+console.logBytes13(bytes13) (NFT_MarketPlace.sol#1254-1256) is never used and should be removed
+console.logBytes14(bytes14) (NFT_MarketPlace.sol#1258-1260) is never used and should be removed
+console.logBytes15(bytes15) (NFT_MarketPlace.sol#1262-1264) is never used and should be removed
+console.logBytes16(bytes16) (NFT_MarketPlace.sol#1266-1268) is never used and should be removed
+console.logBytes17(bytes17) (NFT_MarketPlace.sol#1270-1272) is never used and should be removed
+console.logBytes18(bytes18) (NFT_MarketPlace.sol#1274-1276) is never used and should be removed
+console.logBytes19(bytes19) (NFT_MarketPlace.sol#1278-1280) is never used and should be removed
+console.logBytes2(bytes2) (NFT_MarketPlace.sol#1210-1212) is never used and should be removed
+console.logBytes20(bytes20) (NFT_MarketPlace.sol#1282-1284) is never used and should be removed
+console.logBytes21(bytes21) (NFT_MarketPlace.sol#1286-1288) is never used and should be removed
+console.logBytes22(bytes22) (NFT_MarketPlace.sol#1290-1292) is never used and should be removed
+console.logBytes23(bytes23) (NFT_MarketPlace.sol#1294-1296) is never used and should be removed
+console.logBytes24(bytes24) (NFT_MarketPlace.sol#1298-1300) is never used and should be removed
+console.logBytes25(bytes25) (NFT_MarketPlace.sol#1302-1304) is never used and should be removed
+console.logBytes26(bytes26) (NFT_MarketPlace.sol#1306-1308) is never used and should be removed
+console.logBytes27(bytes27) (NFT_MarketPlace.sol#1310-1312) is never used and should be removed
+console.logBytes28(bytes28) (NFT_MarketPlace.sol#1314-1316) is never used and should be removed
+console.logBytes29(bytes29) (NFT_MarketPlace.sol#1318-1320) is never used and should be removed
+console.logBytes3(bytes3) (NFT_MarketPlace.sol#1214-1216) is never used and should be removed
+console.logBytes30(bytes30) (NFT_MarketPlace.sol#1322-1324) is never used and should be removed
+console.logBytes31(bytes31) (NFT_MarketPlace.sol#1326-1328) is never used and should be removed
+console.logBytes32(bytes32) (NFT_MarketPlace.sol#1330-1332) is never used and should be removed
+console.logBytes4(bytes4) (NFT_MarketPlace.sol#1218-1220) is never used and should be removed
+console.logBytes5(bytes5) (NFT_MarketPlace.sol#1222-1224) is never used and should be removed
+console.logBytes6(bytes6) (NFT_MarketPlace.sol#1226-1228) is never used and should be removed
+console.logBytes7(bytes7) (NFT_MarketPlace.sol#1230-1232) is never used and should be removed
+console.logBytes8(bytes8) (NFT_MarketPlace.sol#1234-1236) is never used and should be removed
+console.logBytes9(bytes9) (NFT_MarketPlace.sol#1238-1240) is never used and should be removed
+console.logInt(int256) (NFT_MarketPlace.sol#1182-1184) is never used and should be removed
+console.logString(string) (NFT_MarketPlace.sol#1190-1192) is never used and should be removed
+console.logUint(uint256) (NFT_MarketPlace.sol#1186-1188) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code[0m
+[92m
+Pragma version^0.8.0 (NFT_MarketPlace.sol#9) allows old versions
+Pragma version^0.8.1 (NFT_MarketPlace.sol#244) allows old versions
+Pragma version>=0.4.22<0.9.0 (NFT_MarketPlace.sol#1164) is too complex
+Pragma version>0.4.0<=0.9.0 (NFT_MarketPlace.sol#2916) is too complex
+solc-0.8.9 is not recommended for deployment
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity[0m
+[92m
+Low level call in Address.sendValue(address,uint256) (NFT_MarketPlace.sol#300-305):
+	- (success) = recipient.call{value: amount}() (NFT_MarketPlace.sol#303)
+Low level call in Address.functionCallWithValue(address,bytes,uint256,string) (NFT_MarketPlace.sol#368-379):
+	- (success,returndata) = target.call{value: value}(data) (NFT_MarketPlace.sol#377)
+Low level call in Address.functionStaticCall(address,bytes,string) (NFT_MarketPlace.sol#397-406):
+	- (success,returndata) = target.staticcall(data) (NFT_MarketPlace.sol#404)
+Low level call in Address.functionDelegateCall(address,bytes,string) (NFT_MarketPlace.sol#424-433):
+	- (success,returndata) = target.delegatecall(data) (NFT_MarketPlace.sol#431)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls[0m
+[92m
+Contract console (NFT_MarketPlace.sol#1166-2694) is not in CapWords
+Contract NFT_MarketPlace (NFT_MarketPlace.sol#2929-3256) is not in CapWords
+Parameter NFT_MarketPlace.updateListingPrice(uint256)._listingPrice (NFT_MarketPlace.sol#2974) is not in mixedCase
+Variable NFT_MarketPlace._tokenURIs (NFT_MarketPlace.sol#2940) is not in mixedCase
+Variable NFT_MarketPlace._itemIds (NFT_MarketPlace.sol#2944) is not in mixedCase
+Variable NFT_MarketPlace._itemsSold (NFT_MarketPlace.sol#2945) is not in mixedCase
+Variable NFT_MarketPlace._tokenIds (NFT_MarketPlace.sol#2946) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions[0m
+[92m
+console.slitherConstructorConstantVariables() (NFT_MarketPlace.sol#1166-2694) uses literals with too many digits:
+	- CONSOLE_ADDRESS = address(0x000000000000000000636F6e736F6c652e6c6f67) (NFT_MarketPlace.sol#1167)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#too-many-digits[0m
+[92m
+NFT_MarketPlace._baseURI (NFT_MarketPlace.sol#2939) should be constant
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variables-that-could-be-declared-constant[0m
+[92m
+balanceOfBatch(address[],uint256[]) should be declared external:
+	- ERC1155.balanceOfBatch(address[],uint256[]) (NFT_MarketPlace.sol#648-664)
+safeTransferFrom(address,address,uint256,uint256,bytes) should be declared external:
+	- ERC1155.safeTransferFrom(address,address,uint256,uint256,bytes) (NFT_MarketPlace.sol#683-695)
+safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) should be declared external:
+	- ERC1155.safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) (NFT_MarketPlace.sol#700-712)
+exists(uint256) should be declared external:
+	- ERC1155Supply.exists(uint256) (NFT_MarketPlace.sol#2782-2784)
+renounceOwnership() should be declared external:
+	- Ownable.renounceOwnership() (NFT_MarketPlace.sol#2886-2888)
+transferOwnership(address) should be declared external:
+	- Ownable.transferOwnership(address) (NFT_MarketPlace.sol#2894-2897)
+getListingPrice() should be declared external:
+	- NFT_MarketPlace.getListingPrice() (NFT_MarketPlace.sol#2969-2972)
+updateListingPrice(uint256) should be declared external:
+	- NFT_MarketPlace.updateListingPrice(uint256) (NFT_MarketPlace.sol#2974-2977)
+mintToken(string,uint256,uint256) should be declared external:
+	- NFT_MarketPlace.mintToken(string,uint256,uint256) (NFT_MarketPlace.sol#2980-2991)
+mintBatch(address,uint256[],uint256[],bytes) should be declared external:
+	- NFT_MarketPlace.mintBatch(address,uint256[],uint256[],bytes) (NFT_MarketPlace.sol#2993-3000)
+fetchMarketItems() should be declared external:
+	- NFT_MarketPlace.fetchMarketItems() (NFT_MarketPlace.sol#3035-3055)
+createMarketSale(uint256,uint256) should be declared external:
+	- NFT_MarketPlace.createMarketSale(uint256,uint256) (NFT_MarketPlace.sol#3059-3077)
+fetchMyNFTs() should be declared external:
+	- NFT_MarketPlace.fetchMyNFTs() (NFT_MarketPlace.sol#3080-3101)
+fetchItemsListed() should be declared external:
+	- NFT_MarketPlace.fetchItemsListed() (NFT_MarketPlace.sol#3104-3125)
+setURI(string) should be declared external:
+	- NFT_MarketPlace.setURI(string) (NFT_MarketPlace.sol#3150-3152)
+balanceOfAddress(uint256) should be declared external:
+	- NFT_MarketPlace.balanceOfAddress(uint256) (NFT_MarketPlace.sol#3158-3160)
+burnNFT(uint256,uint256) should be declared external:
+	- NFT_MarketPlace.burnNFT(uint256,uint256) (NFT_MarketPlace.sol#3162-3171)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external[0m
+NFT_MarketPlace.sol analyzed (14 contracts with 78 detectors), 447 result(s) found
